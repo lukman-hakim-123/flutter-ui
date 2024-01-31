@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/page2.dart';
 
 class MyForm extends StatefulWidget {
   const MyForm({super.key});
@@ -273,6 +274,21 @@ class _MyFormState extends State<MyForm> {
                 );
               },
               child: const Text('Open SnackBar'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Page2()));
+                    },
+                    child: const Text('Next Page'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

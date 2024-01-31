@@ -5,70 +5,37 @@ class Hal2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.grey,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {},
-                ),
-              ),
-              const Text(
-                "Detail",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.share,
-                  size: 32,
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-        Center(
-          child: Container(
-            padding: const EdgeInsets.all(10.0),
-            child: const Column(
-              children: [
-                Text(
-                  "Stylish Chair",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w500,
+    return Expanded(
+      child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2),
+          itemCount: 50,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 100,
+              width: double.infinity,
+              margin: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    offset: Offset.zero,
+                    blurRadius: 15,
                   ),
+                ],
+              ),
+              child: Center(
+                  child: Text(
+                (index + 1).toString(),
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Rp. 350.000",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Color(0xFF9A9390),
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 1,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+              )),
+            );
+          }),
     );
   }
 }

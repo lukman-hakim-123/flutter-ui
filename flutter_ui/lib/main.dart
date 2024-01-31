@@ -53,10 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor:
               Theme.of(context).colorScheme.background.withBlue(100),
           title: Text(widget.title),
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          ),
+          // leading: IconButton(
+          //   onPressed: () {},
+          //   icon: const Icon(Icons.menu),
+          // ),
           actions: [
             IconButton(
               onPressed: () {},
@@ -67,6 +67,44 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.more_vert),
             ),
           ],
+        ),
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              Container(
+                color: Colors.blue[100],
+                child: UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                  ),
+                  accountName: const Text(
+                    'Khanif Zyen',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  accountEmail: const Text(
+                    "khanif.zyen@gmail.com",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  currentAccountPicture: const CircleAvatar(
+                    child: FlutterLogo(size: 50),
+                  ),
+                ),
+              ),
+              ListTile(
+                title: const Text('Item 1'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Item 2'),
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Hal2()));
+                },
+              ),
+            ],
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
