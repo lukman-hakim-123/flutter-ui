@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/halaman2.dart';
+import 'package:flutter_ui/halaman3.dart';
+import 'package:flutter_ui/halaman4.dart';
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,54 +34,85 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _selectedIndex = 0;
 
-  void _incrementCounter() {
+  void _onItemTapped(int index) {
     setState(() {
-      _counter++;
+      _selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> pages = [Home(), Hal2(), Hal3(), Hal4()];
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-        ),
-        actions: [
-          IconButton(
+        appBar: AppBar(
+          backgroundColor:
+              Theme.of(context).colorScheme.background.withBlue(100),
+          title: Text(widget.title),
+          leading: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.menu),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.more_vert),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.mail),
+              label: 'Messages',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_comment),
+              label: 'hal4',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          // backgroundColor: Colors.amber,
+          selectedItemColor: Colors.amber[800],
+          unselectedItemColor: Colors.grey,
+          onTap: _onItemTapped,
+        ),
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: pages,
+          // Center(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: <Widget>[
+          //       const Text(
+          //         'You have pushed the button this many times:',
+          //       ),
+          //       Text(
+          //         '$_counter',
+          //         style: Theme.of(context).textTheme.headlineMedium,
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: _incrementCounter,
+          //   tooltip: 'Increment',
+          //   child: const Icon(Icons.add),
+          // ),
+        ));
   }
 }
