@@ -3,6 +3,10 @@ import 'package:flutter_ui/halaman2.dart';
 import 'package:flutter_ui/halaman3.dart';
 import 'package:flutter_ui/halaman4.dart';
 import 'package:flutter_ui/halaman5.dart';
+import 'package:flutter_ui/navigator/bottom_nav.dart';
+import 'package:flutter_ui/navigator/push.dart';
+import 'package:flutter_ui/navigator/silverappbar.dart';
+import 'package:flutter_ui/navigator/tabbar.dart';
 import 'home.dart';
 
 void main() {
@@ -36,150 +40,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    List<Widget> pages = [Home(), Hal2(), Hal3(), Hal4(), MyForm()];
-
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor:
-              Theme.of(context).colorScheme.background.withBlue(100),
-          title: Text(widget.title),
-          // leading: IconButton(
-          //   onPressed: () {},
-          //   icon: const Icon(Icons.menu),
-          // ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.more_vert),
-            ),
-          ],
-        ),
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              Container(
-                color: Colors.blue[100],
-                child: UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                  ),
-                  accountName: const Text(
-                    'Khanif Zyen',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  accountEmail: const Text(
-                    "khanif.zyen@gmail.com",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  currentAccountPicture: const CircleAvatar(
-                    child: FlutterLogo(size: 50),
-                  ),
-                ),
-              ),
-              ListTile(
-                title: const Text('Item 1'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Hal2()));
-                },
-              ),
-            ],
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background.withBlue(100),
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.mail),
-              label: 'Messages',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_comment),
-              label: 'hal4',
-            ),
-            BottomNavigationBarItem(
-              icon: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Icon(
-                    Icons.shopping_cart,
-                  ),
-                  Positioned(
-                    top: -4,
-                    right: -4,
-                    child: CircleAvatar(
-                      radius: 8,
-                      backgroundColor: Colors.red,
-                      child: Text(
-                        "1",
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              // icon: Icon(Icons.shopping_cart),
-              label: 'hal5',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          // backgroundColor: Colors.amber,
-          selectedItemColor: Colors.amber[800],
-          unselectedItemColor: Colors.grey,
-          onTap: _onItemTapped,
-        ),
-        body: IndexedStack(
-          index: _selectedIndex,
-          children: pages,
-          // Center(
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: <Widget>[
-          //       const Text(
-          //         'You have pushed the button this many times:',
-          //       ),
-          //       Text(
-          //         '$_counter',
-          //         style: Theme.of(context).textTheme.headlineMedium,
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: _incrementCounter,
-          //   tooltip: 'Increment',
-          //   child: const Icon(Icons.add),
-          // ),
-        ));
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.more_vert),
+          ),
+        ],
+      ),
+      body: MyBottomNav(),
+    );
   }
 }

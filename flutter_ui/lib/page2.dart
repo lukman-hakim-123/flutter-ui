@@ -31,11 +31,23 @@ class _Page2State extends State<Page2> {
               return Container(
                 color: index.isOdd ? Colors.white : Colors.blue[200],
                 height: 100,
-                child: Center(
-                  child: Text(
-                    "Item $index",
-                    textScaler: const TextScaler.linear(2),
-                  ),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        "Item $index",
+                        textScaler: const TextScaler.linear(2),
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Go Back'),
+                        ))
+                  ],
                 ),
               );
             }, childCount: 20),
